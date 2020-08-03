@@ -147,4 +147,3 @@ cython_debug/
 *__pycache__*
 *.pyc
 *.DS_Store
-1
