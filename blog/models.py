@@ -25,6 +25,7 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
 class Tag(models.Model):
     """
     标签 Tag 也比较简单，和 Category 一样。
@@ -81,11 +82,12 @@ class Post(models.Model):
     # Category 类似。
     author = models.ForeignKey(User, verbose_name='作者', on_delete=models.CASCADE)
 
+    views = models.PositiveIntegerField('浏览量', default=0, editable=False)
+
     class Meta:
         verbose_name = '文章'
         verbose_name_plural = verbose_name
         ordering = ['-created_time']
-
 
     def save(self, *args, **kwargs):
         self.modified_time = timezone.now()
@@ -110,3 +112,7 @@ class Post(models.Model):
     # 记得从 django.urls 中导入 reverse 函数
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'pk': self.pk})
+
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])

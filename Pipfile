@@ -35,6 +35,9 @@ pillow = "*"
 whoosh = "*"
 jieba = "*"
 pymdown-extensions = "*"
+pymysql = "*"
+django-filter = "*"
+faker = "*"
 
 [requires]
-python_version = "3.6"
+python_version = "3"
